@@ -17,16 +17,26 @@ class TipoTest extends TestCase
      */
     public function test_funcao_index_retornar_array_com_sucesso()
     {
-       //Criar paramentros
-       $tipos = Tipo::factory()->count(5)->create();
-       dd($tipos);
-       //Processar
-       //fazer uma chamada para  arota index no api
-       //usar verbo GET
-       $response = $this->getJson('/api/tipos');
+        //Criar paramentros
+        $tipos = Tipo::factory()->count(5)->create();
+        dd($tipos);
+        //Processar
+        //fazer uma chamada para  arota index no api
+        //usar verbo GET
+        $response = $this->getJson('/api/tipos');
 
-       dd($response['data']);
+        dd($response['data']);
 
-       //Verificar resposta
+        //Verificar resposta
+        $response
+            ->assertStatus(200)
+            ->assertJsonCount(5, 'data')
+            ->assertJsonStructure(
+                [
+                    'data' => [
+                        '*' => ['id', 'descricao' . 'created_at', 'update_at']
+                    ]
+                ]
+            );
     }
 }
