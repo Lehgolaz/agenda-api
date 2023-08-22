@@ -16,6 +16,9 @@ class TipoController extends Controller
     public function index()
     {
         //
+        $tipos = Tipo::all();
+
+        return response()->json(['data' => $tipos]);
     }
 
     /**
@@ -23,10 +26,6 @@ class TipoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.

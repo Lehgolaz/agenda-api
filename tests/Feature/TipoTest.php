@@ -25,7 +25,7 @@ class TipoTest extends TestCase
        //usar verbo GET
        $response = $this->getJson('/api/tipos');
 
-       dd($response);
+       dd($response['data']);
 
        //Verificar resposta
     }
