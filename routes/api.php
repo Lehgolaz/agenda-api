@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/tipo/',[TipoController::class,'index'])->name('tipo.index');
+Route::get('/tipos/',[TipoController::class,'index'])->name('tipos.index');
 
 
 //Route::resources('/tipos',TipoController::class);

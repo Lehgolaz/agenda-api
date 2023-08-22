@@ -33,7 +33,7 @@ class TipoTest extends TestCase
             ->assertJsonCount(5,'data')
             ->assertJsonStructure([
                 'data' =>[
-                    '*' =>['id','descricao','created_at','update_at']
+                    '*' =>['id','descricao','created_at','updated_at']
                 ]
             ]
             );
