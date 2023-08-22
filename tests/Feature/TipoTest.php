@@ -21,6 +21,11 @@ class TipoTest extends TestCase
        $tipos = Tipo::factory()->count(5)->create();
        dd($tipos);
        //Processar
+       //fazer uma chamada para  arota index no api
+       //usar verbo GET
+       $response = $this->getJson('/api/tipos');
+
+       dd($response);
 
        //Verificar resposta
     }
