@@ -30,12 +30,30 @@ class TipoTest extends TestCase
         //Verificar resposta
         $response
             ->assertStatus(200)
-            ->assertJsonCount(5,'data')
-            ->assertJsonStructure([
-                'data' =>[
-                    '*' =>['id','descricao','created_at','updated_at']
+            ->assertJsonCount(5, 'data')
+            ->assertJsonStructure(
+                [
+                    'data' => [
+                        '*' => ['id', 'descricao', 'created_at', 'updated_at']
+                    ]
                 ]
-            ]
             );
+    }
+
+    /**
+     * deve cadastrar um novo resgistro com sucesso
+     * @return void
+     */
+    public function test_criar_um_novo_tipo_com_sucesso()
+    {
+        //criar dados
+        $data = [
+            'descricao' => "Cancelado"
+        ];
+        //processar
+        $response = $this->postJson('/api/tipos/', $data);
+        //avaliar saida
+        $response->assertStatus(201)
+            ->assertJsonStructure(['id', 'descricao', 'created_at', 'update_at']);
     }
 }

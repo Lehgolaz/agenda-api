@@ -36,6 +36,11 @@ class TipoController extends Controller
     public function store(StoreTipoRequest $request)
     {
         //
+        $data = $request->all();
+
+        $tipo = Tipo::created($data);
+
+        return response()->json($tipo,201);
     }
 
     /**
