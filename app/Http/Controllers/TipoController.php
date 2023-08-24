@@ -21,13 +21,7 @@ class TipoController extends Controller
         return response()->json(['data' => $tipos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreTipoRequest  $request
@@ -35,10 +29,10 @@ class TipoController extends Controller
      */
     public function store(StoreTipoRequest $request)
     {
-        //
         $data = $request->all();
-
-        $tipo = Tipo::created($data);
+        
+        //$tipo = Tipo::create($request->all());
+        $tipo = Tipo::create($data);
 
         return response()->json($tipo,201);
     }
@@ -49,21 +43,18 @@ class TipoController extends Controller
      * @param  \App\Models\Tipo  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipo $tipo)
+    public function show($id)
     {
         //
+        $tipo = Tipo::find($id);
+
+        if(!$tipo){
+            return response()->json(['message' =>"Tipo não encontrado!"],404);
+        }
+
+        return response()->json($tipo);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tipo  $tipo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tipo $tipo)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -72,9 +63,20 @@ class TipoController extends Controller
      * @param  \App\Models\Tipo  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTipoRequest $request, Tipo $tipo)
+    public function update(UpdateTipoRequest $request, $id)
     {
-        //
+         // Procure o tipo pela id
+         $tipo = Tipo::find($id);
+         
+         if (!$tipo) {
+             return response()->json(['message' => 'Tipo não encontrado!'], 404);
+         }
+ 
+         // Faça o update do tipo
+         $tipo->update($request->all());
+ 
+         // Retorne o tipo
+         return response()->json($tipo);
     }
 
     /**

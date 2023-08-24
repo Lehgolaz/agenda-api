@@ -25,7 +25,7 @@ class StoreTipoRequest extends FormRequest
     {
         return [
             //
-            "descricao"=> 'required | min: 2 | max: 240 | inique:tipos,descricao'
+            "descricao"=> 'required | min: 2 | max: 240 | unique:tipos,descricao'
         ];
     }
 }
