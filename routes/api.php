@@ -20,10 +20,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/tipos/',[TipoController::class,'index'])->name('tipos.index');
-Route::post('/tipos/',[TipoController::class,'store'])->name('tipos.store');
-Route::get('/tipos/{id}',[TipoController::class,'show'])->name('tipos.show');
-Route::put('/tipos/{id}',[TipoController::class,'update'])->name('tipos.update');
+Route::get('/tipos/', [TipoController::class, 'index'])->name('tipos.index');
+Route::post('/tipos/', [TipoController::class, 'store']) ->name('tipos.store');
+Route::get('/tipos/{tipo}', [TipoController::class, 'show'])->name('tipos.show');
+Route::put('/tipos/{tipo}', [TipoController::class, 'update'])->name('tipos.update');
+Route::delete('/tipos/{tipo}', [TipoController::class, 'destroy']) ->name('tipos.destroy');
 
 
-//Route::resources('/tipos',TipoController::class);
+Route::get('/tarefs/', [TarefController::class, 'index'])->name('tarefs.index');
+Route::post('/tarefs/', [TarefController::class, 'store']) ->name('tarefs.store');
+Route::get('/tarefs/{tipo}', [TarefController::class, 'show'])->name('tarefs.show');
+Route::put('/tarefs/{tipo}', [TarefController::class, 'update'])->name('tarefs.update');
+Route::delete('/tarefs/{tipo}', [TarefController::class, 'destroy']) ->name('tarefs.destroy');
+
+
+// Route::resource('/tipos',TipoController::class);

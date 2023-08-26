@@ -85,8 +85,19 @@ class TipoController extends Controller
      * @param  \App\Models\Tipo  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tipo $tipo)
+    public function destroy($id)
     {
-        //
+        // Procure o tipo pela id
+        $tipo = Tipo::find($id);
+         
+        if (!$tipo) {
+            return response()->json(['message' => 'Tipo não encontrado!'], 404);
+        }
+
+        // Faça o update do tipo
+        $tipo->delete();
+
+        // Retorne o tipo
+        return response()->json(['message' => 'Tipo deletado com sucesso!'], 200);
     }
 }

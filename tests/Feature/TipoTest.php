@@ -20,7 +20,6 @@ class TipoTest extends TestCase
     {
         //$tipo = Tipo::factory()->create();
 
-
         //Criar parametros
         Tipo::factory()->count(5)->create();
         //Processar
@@ -100,7 +99,6 @@ class TipoTest extends TestCase
      */
     public function test_buscar_id_no_banco_com_falha()
     {
-
         //processar
         $response = $this->getJson('/api/tipos/99999999');
         //verificar saida
@@ -153,11 +151,11 @@ class TipoTest extends TestCase
                 'message' => "Tipo não encontrado!"
             ]);
     }
+
     /**
      * Teste de atualizacao com falha nos dados
      * @return void
      */
-
     public function test_atualizar_tipo_com_falha_nos_dados()
     {
         //Criar dados
@@ -169,28 +167,59 @@ class TipoTest extends TestCase
         $response = $this->putJson('/api/tipos/' . $tipo->id, $new);
         //Analisar
         // Verifique a resposta
-        //avaliar resposta
+        //Avaliar a saida
         $response->assertStatus(422)
             ->assertJsonValidationErrors(['descricao']);
     }
+
     /**
-     * Teste de atualizacao na descrição unica
+     * Teste de atualizacao com falha na descricao unica
      * @return void
      */
-
     public function test_atualizar_tipo_com_falha_na_descricao_unica()
     {
         //Criar dados
         $tipo = Tipo::factory()->create();
-        $update = Tipo::factory()->create();
-        //para para upgrade
-        $new = [
-            'descricao' => $tipo->descricao,
-        ];
+        $updated = Tipo::factory()->create();
+        // Para para upgrade
+        $new = ['descricao' => $tipo->descricao,];
         //Processar
-        $response = $this->putJson('/api/tipos/' . $update->id, $new);
-        //avaliar resposta
+        $response = $this->putJson('/api/tipos/' . $updated->id, $new);
+        //Avaliar a saida
         $response->assertStatus(422)
             ->assertJsonValidationErrors(['descricao']);
+    }
+
+
+    /**
+     * Deve deletar com sucesso um registro do banco
+     */
+    public function test_deletar_tipo_com_sucesso(){
+        //Criar o tipo
+        $tipo = Tipo::factory()->create();
+
+        //Processar
+        $response = $this->deleteJson('/api/tipos/'.$tipo->id);
+        //Analisar
+        // Verifique a resposta
+        $response->assertStatus(200)
+            ->assertJson([
+                'message' => "Tipo deletado com sucesso!"
+            ]);
+    }
+
+    /**
+     * Deve dar erro ao deletar um registro inexistente
+     */
+    public function test_deletar_tipo_com_falha(){
+
+        //Processar
+        $response = $this->deleteJson('/api/tipos/999999');
+        //Analisar
+        // Verifique a resposta
+        $response->assertStatus(404)
+            ->assertJson([
+                'message' => "Tipo não encontrado!"
+            ]);
     }
 }
