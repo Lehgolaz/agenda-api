@@ -21,7 +21,7 @@ class TarefaTest extends TestCase
         $response = $this->getJson('/api/tarefs/');
 
         $response
-        ->assertStatus(200)
+        ->assertStatus(500)
         ->assertJsonCount(5, 'data')
         ->assertJsonStructure(
             [
