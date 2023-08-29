@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('tarefs', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao')->unique();
+            $table->dateTime('data');
+            $table->string('descricao');
+            $table->text('descricao');
+            $table->string('contato');
+            $table->unsignedBigInteger('tipo_id');
+            //$table->unsignedBigInteger('fk_id');
+            $table->foreign('tipo_id')->references('id')->on('tipos');
             $table->timestamps();
         });
     }
