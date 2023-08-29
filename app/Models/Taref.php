@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Taref extends Model
 {
     use HasFactory;
-    protected $fillable = ['descritivo'];
+
+    protected $fillable = ['data','assunto','descricao','contato','tipo_id'];
+
+    public function tipo(){
+        $this->belongsTo(Tipo::class,'tipo_id');
+    }
 }

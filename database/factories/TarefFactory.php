@@ -18,7 +18,7 @@ class TarefFactory extends Factory
     {
         return [
             //
-            "descritivo" => $this->faker->sentence(),
+            "descricao" => $this->faker->sentence(),
         ];
     }
 }

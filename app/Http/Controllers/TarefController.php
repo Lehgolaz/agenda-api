@@ -13,44 +13,23 @@ class TarefController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($tarefs)
     {
         //
-        $tarefs = Taref::all();
+        $tarefs = Taref::all($tarefs);
 
         return response()->json(['data' => $tarefs]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTarefRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(StoreTarefRequest $request)
     {
-        //
+       
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Taref  $taref
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Taref $taref)
+   
+    public function show($id)
     {
-        //
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Taref;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class TarefSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Taref::factory()->count(100)->create();
     }
 }

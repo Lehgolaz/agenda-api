@@ -14,7 +14,7 @@ class TarefaTest extends TestCase
      *
      * @return void
      */
-    public function test_funcao_index_returnar_array_com_sucesso()
+    public function test_funcao_index_retornar_array_com_sucesso()
     {
         Taref::factory()->count(5)->create();
 
@@ -26,7 +26,7 @@ class TarefaTest extends TestCase
         ->assertJsonStructure(
             [
                 'data' => [
-                    '*' => ['id', 'descritivo', 'created_at', 'updated_at']
+                    '*' => ['id', 'descricao', 'created_at', 'updated_at']
                 ]
             ]
         );

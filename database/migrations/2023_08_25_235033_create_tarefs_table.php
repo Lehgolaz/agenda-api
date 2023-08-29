@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tarefs', function (Blueprint $table) {
             $table->id();
-            $table->string('descritivo')->unique();
+            $table->string('descricao')->unique();
             $table->timestamps();
         });
     }

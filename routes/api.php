@@ -29,9 +29,9 @@ Route::delete('/tipos/{tipo}', [TipoController::class, 'destroy']) ->name('tipos
 
 Route::get('/tarefs/', [TarefController::class, 'index'])->name('tarefs.index');
 Route::post('/tarefs/', [TarefController::class, 'store']) ->name('tarefs.store');
-Route::get('/tarefs/{tipo}', [TarefController::class, 'show'])->name('tarefs.show');
-Route::put('/tarefs/{tipo}', [TarefController::class, 'update'])->name('tarefs.update');
-Route::delete('/tarefs/{tipo}', [TarefController::class, 'destroy']) ->name('tarefs.destroy');
+Route::get('/tarefs/{taref}', [TarefController::class, 'show'])->name('tarefs.show');
+Route::put('/tarefs/{taref}', [TarefController::class, 'update'])->name('tarefs.update');
+Route::delete('/tarefs/{taref}', [TarefController::class, 'destroy']) ->name('tarefs.destroy');
 
 
 // Route::resource('/tipos',TipoController::class);
