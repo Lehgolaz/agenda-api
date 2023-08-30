@@ -26,7 +26,7 @@ class TarefaTest extends TestCase
         ->assertJsonStructure(
             [
                 'data' => [
-                    '*' => ['id', 'descricao', 'created_at', 'updated_at']
+                    '*' => ['id', 'data', 'assunto', 'descricao', 'contato', 'tipo_id', 'created_at', 'updated_at']
                 ]
             ]
         );
