@@ -24,7 +24,7 @@ class StoreTarefRequest extends FormRequest
     public function rules()
     {
         return [
-            'data' => 'required | data',
+            'data' => 'required | date',
             'assunto' => 'required | min: 2 | max: 50',
             'descricao' =>'required | min: 2 | max: 240',
             'contato' => 'required | min: 2 | max: 50',

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TarefController;
 use App\Http\Controllers\TipoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

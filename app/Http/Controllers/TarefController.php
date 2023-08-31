@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Taref;
 use App\Http\Requests\StoreTarefRequest;
 use App\Http\Requests\UpdateTarefRequest;
+use App\Models\Tipo;
 
 class TarefController extends Controller
 {
@@ -13,10 +14,10 @@ class TarefController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($tarefs)
+    public function index()
     {
         //
-        $tarefs = Taref::all($tarefs);
+        $tarefs = Taref::all();
 
         return response()->json(['data' => $tarefs]);
     }
@@ -24,23 +25,24 @@ class TarefController extends Controller
   
     public function store(StoreTarefRequest $request)
     {
-       
+       $data = $request->all();
+
+      //$ttaref = Taref::create($request->all());
+        $taref = Taref::create($data);
+
+       return response()->json($taref,201);
     }
 
    
     public function show($id)
     {
-    }
+        $taref = Taref::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Taref  $taref
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Taref $taref)
-    {
-        //
+        if(!$taref){
+            return response()->json(['message' =>"Tareaf não encontrado!"],404);
+        }
+
+        return response()->json($taref);
     }
 
     /**
@@ -50,9 +52,20 @@ class TarefController extends Controller
      * @param  \App\Models\Taref  $taref
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTarefRequest $request, Taref $taref)
+    public function update(UpdateTarefRequest $request, Taref $id)
     {
-        //
+           // Procure o tipo pela id
+           $taref = Taref::find($id);
+         
+           if (!$taref) {
+               return response()->json(['message' => 'Tarefa não encontrado!'], 404);
+           }
+   
+           // Faça o update do tipo
+           $taref->update($request->all());
+   
+           // Retorne o tipo
+           return response()->json($taref);
     }
 
     /**
@@ -61,8 +74,15 @@ class TarefController extends Controller
      * @param  \App\Models\Taref  $taref
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Taref $taref)
+    public function destroy(Taref $id)
     {
-        //
+        $taref = Taref::find($id);
+        if (!$taref) {
+            return response()->json(['message' => 'Tipo não encontrado!'], 404);
+        }
+
+        $taref->delete();
+
+        return response()->json(['message' => 'Tipo deletado com sucesso!'], 200);
     }
 }

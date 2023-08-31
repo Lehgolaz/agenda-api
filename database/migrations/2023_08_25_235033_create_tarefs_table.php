@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tarefs', function (Blueprint $table) {
             $table->id();
             $table->dateTime('data');
-            $table->string('descricao');
+            $table->string('assunto');
             $table->text('descricao');
             $table->string('contato');
             $table->unsignedBigInteger('tipo_id');

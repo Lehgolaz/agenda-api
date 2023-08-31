@@ -18,10 +18,10 @@ class TarefFactory extends Factory
     public function definition()
     {
         return [
-            'data' => $this->faker()->date,
-            'assunto' => $this->faker()->word,
-            'descricao' => $this->faker()->sentence,
-            'contato' => $this->faker()->name,
+            'data' => $this->faker->dateTime(),
+            'assunto' => $this->faker->word(),
+            'descricao' => $this->faker->sentence(),
+            'contato' => $this->faker->name(),
             'tipo_id' => function(){
                 return Tipo::factory()->create()->id;
             }
