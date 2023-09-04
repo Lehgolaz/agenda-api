@@ -39,7 +39,7 @@ class TarefController extends Controller
         $taref = Taref::find($id);
 
         if(!$taref){
-            return response()->json(['message' =>"Tareaf não encontrado!"],404);
+            return response()->json(['message' =>"Tarefa não encontrada!"],404);
         }
 
         return response()->json($taref);
@@ -52,13 +52,15 @@ class TarefController extends Controller
      * @param  \App\Models\Taref  $taref
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTarefRequest $request, Taref $id)
+    public function update(UpdateTarefRequest $request, $id)
     {
            // Procure o tipo pela id
            $taref = Taref::find($id);
+
+
          
            if (!$taref) {
-               return response()->json(['message' => 'Tarefa não encontrado!'], 404);
+               return response()->json(['message' => 'Tarefa não encontrada!'], 404);
            }
    
            // Faça o update do tipo
@@ -74,15 +76,15 @@ class TarefController extends Controller
      * @param  \App\Models\Taref  $taref
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Taref $id)
+    public function destroy( $id)
     {
         $taref = Taref::find($id);
         if (!$taref) {
-            return response()->json(['message' => 'Tipo não encontrado!'], 404);
+            return response()->json(['message' => 'Tarefa não encontrada!'], 404);
         }
 
         $taref->delete();
 
-        return response()->json(['message' => 'Tipo deletado com sucesso!'], 200);
+        return response()->json(['message' => 'Tarefa deletada com sucesso!'], 200);
     }
 }
